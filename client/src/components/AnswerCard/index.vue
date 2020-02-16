@@ -15,12 +15,10 @@
     </div>
     <footer class="card-footer">
       <QuizName class="card-footer-item" />
+      <SelectedMode class="card-footer-item" />
     </footer>
     <footer class="card-footer">
       <StudentName class="card-footer-item" />
-    </footer>
-    <footer class="card-footer">
-      <SelectedMode class="card-footer-item" />
     </footer>
     <footer class="card-footer">
       <AudioPlayer class="card-footer-item" />

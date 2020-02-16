@@ -14,6 +14,9 @@ export default {
   },
   async updateVocabIds({ commit, state }) {
     const { selectedQuiz } = state;
+    if (!selectedQuiz) {
+      return;
+    }
     return await fetch(`./api/quiz/${selectedQuiz}`)
       .then(res => res.json())
       .then(json => {
@@ -37,6 +40,9 @@ export default {
   },
   async updateVocab({ commit, state }) {
     const vocabId = state.vocabIds[state.runningIndex];
+    if (!vocabId) {
+      return;
+    }
     return await fetch(`./api/vocab/${vocabId}`)
       .then(res => res.json())
       .then(json => {

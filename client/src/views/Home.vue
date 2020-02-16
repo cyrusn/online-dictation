@@ -17,8 +17,17 @@
 <script>
 import NameSelector from "@/components/Form/NameSelector";
 import QuizSelector from "@/components/Form/QuizSelector";
+import { mapMutations } from "vuex";
 
 export default {
-  components: { NameSelector, QuizSelector }
+  mounted() {
+    this.resetResponses();
+    this.updateRunningIndex(0);
+    this.resetVocab();
+  },
+  components: { NameSelector, QuizSelector },
+  methods: {
+    ...mapMutations(["updateRunningIndex", "resetResponses", "resetVocab"])
+  }
 };
 </script>

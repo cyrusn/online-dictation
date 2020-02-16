@@ -22,6 +22,9 @@ export default {
     ...mapState(["vocab"]),
     audio() {
       const { _id } = this.vocab;
+      if (!_id) {
+        return new Audio();
+      }
       const src = `./api/voice/${_id}`;
       const audio = new Audio(src);
       audio.autoplay = true;

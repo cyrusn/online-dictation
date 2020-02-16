@@ -12,20 +12,28 @@
 <script>
 import AnswerCard from "@/components/AnswerCard";
 import Modal from "@/components/Modal";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  mounted() {
-    if (!this.selectedQuiz) {
-      this.$router.push("/");
-    }
-  },
-  computed: {
-    ...mapState(["selectedQuiz"])
-  },
   components: {
     AnswerCard,
     Modal
+  },
+  mounted() {
+    if (!this.selectedQuiz) {
+      this.$router.push("/");
+      return;
+    }
+
+    if (!this.vocab.title) {
+      this.updateVocab();
+    }
+  },
+  computed: {
+    ...mapState(["selectedQuiz", "vocab"])
+  },
+  methods: {
+    ...mapActions(["updateVocab"])
   }
 };
 </script>

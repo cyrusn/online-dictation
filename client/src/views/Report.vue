@@ -10,13 +10,11 @@
               </p>
             </header>
             <footer class="card-footer">
-              <StudentName class="card-footer-item" />
-            </footer>
-            <footer class="card-footer">
               <QuizName class="card-footer-item" />
+              <SelectedMode class="card-footer-item" />
             </footer>
             <footer class="card-footer">
-              <SelectedMode class="card-footer-item" />
+              <StudentName class="card-footer-item" />
             </footer>
             <footer class="card-footer">
               <p class="card-footer-item">
@@ -41,10 +39,22 @@
             </footer>
             <footer class="card-footer">
               <a class="card-footer-item" @click="toggleShow">
-                Show incorrect responses
+                <span class="icon">
+                  <i class="fas fa-clipboard-list"></i>
+                </span>
+                Answers
               </a>
               <a class="card-footer-item" @click="onRetry">
+                <span class="icon">
+                  <i class="fas fa-undo"></i>
+                </span>
                 Retry
+              </a>
+              <a class="card-footer-item" @click="onRestart">
+                <span class="icon">
+                  <i class="fas fa-backward"></i>
+                </span>
+                Restart
               </a>
             </footer>
             <div v-if="isShow">
@@ -79,7 +89,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 import StudentName from "@/components/StudentName";
 import QuizName from "@/components/QuizName";
 import SelectedMode from "@/components/SelectedMode";
@@ -96,6 +106,11 @@ export default {
       this.$router.push("/");
     }
   },
+  destroyed() {
+    this.resetResponses();
+    this.updateRunningIndex(0);
+    this.resetVocab();
+  },
   computed: {
     ...mapState(["responses", "vocabIds", "selectedQuiz"]),
     ...mapGetters(["hasNext"]),
@@ -109,12 +124,16 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["updateRunningIndex", "resetResponses", "resetVocab"]),
     ...mapActions(["resetQuiz"]),
     onRetry() {
-      this.resetQuiz().then(() => this.$router.push("./quiz"));
+      this.resetQuiz().then(() => this.$router.push("/quiz"));
     },
     toggleShow() {
       this.isShow = !this.isShow;
+    },
+    onRestart() {
+      this.resetQuiz().then(() => this.$router.push("/"));
     }
   }
 };
