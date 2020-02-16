@@ -16,6 +16,9 @@
               <QuizName class="card-footer-item" />
             </footer>
             <footer class="card-footer">
+              <SelectedMode class="card-footer-item" />
+            </footer>
+            <footer class="card-footer">
               <p class="card-footer-item">
                 <span class="icon">
                   <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -39,6 +42,9 @@
             <footer class="card-footer">
               <a class="card-footer-item" @click="toggleShow">
                 Show incorrect responses
+              </a>
+              <a class="card-footer-item" @click="onRetry">
+                Retry
               </a>
             </footer>
             <div v-if="isShow">
@@ -73,19 +79,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import StudentName from "@/components/StudentName";
 import QuizName from "@/components/QuizName";
+import SelectedMode from "@/components/SelectedMode";
 
 export default {
-  components: { StudentName, QuizName },
+  components: { StudentName, QuizName, SelectedMode },
   data() {
     return {
       isShow: false
     };
   },
+  mounted() {
+    if (!this.selectedQuiz) {
+      this.$router.push("/");
+    }
+  },
   computed: {
-    ...mapState(["responses"]),
+    ...mapState(["responses", "vocabIds", "selectedQuiz"]),
+    ...mapGetters(["hasNext"]),
     correctRatio() {
       const { responses } = this;
       const correctResponse = responses.filter(res => res.score === 1);
@@ -96,6 +109,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["resetQuiz"]),
+    onRetry() {
+      this.resetQuiz().then(() => this.$router.push("./quiz"));
+    },
     toggleShow() {
       this.isShow = !this.isShow;
     }

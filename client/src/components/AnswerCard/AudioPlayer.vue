@@ -1,27 +1,28 @@
 <template>
-  <a @click="play"
-    ><span class="icon">
+  <a @click="play">
+    <span class="icon">
       <i class="fas fa-play"></i>
     </span>
-    Play</a
-  >
+    Play
+  </a>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: ["_id"],
   mounted() {
     this.audio.load();
   },
   watch: {
-    _id() {
+    vocab() {
       this.audio.load();
     }
   },
   computed: {
+    ...mapState(["vocab"]),
     audio() {
-      const { _id } = this;
-      const src = `/api/voice/${_id}`;
+      const { _id } = this.vocab;
+      const src = `./api/voice/${_id}`;
       const audio = new Audio(src);
       audio.autoplay = true;
       return audio;

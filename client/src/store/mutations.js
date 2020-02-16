@@ -37,13 +37,14 @@ export default {
   },
   appendResponses(state, response) {
     state.responses.push(response);
-    // using _.sortedUniqBy to prevent multiple submission accidentally
+    // using _.sort.uniqBy to prevent multiple submission accidentally
     Vue.set(
       state,
       "responses",
-      _.sortedUniqBy(state.responses, vocab => {
-        return vocab.title;
-      })
+      _(state.responses)
+        .sort()
+        .uniqBy("title")
+        .value()
     );
   },
   resetResponses(state) {

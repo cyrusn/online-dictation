@@ -6,7 +6,7 @@ export default {
     commit("resetVocab");
   },
   async updateQuizNames({ commit }) {
-    await fetch(`/api/quiz`)
+    return await fetch(`./api/quiz`)
       .then(res => res.json())
       .then(json => {
         commit("updateQuizNames", json.sort());
@@ -14,7 +14,7 @@ export default {
   },
   async updateVocabIds({ commit, state }) {
     const { selectedQuiz } = state;
-    await fetch(`/api/quiz/${selectedQuiz}`)
+    return await fetch(`./api/quiz/${selectedQuiz}`)
       .then(res => res.json())
       .then(json => {
         const vocabIds = _.shuffle(json);
@@ -31,15 +31,13 @@ export default {
     return index;
   },
   nextVocab({ dispatch, state }) {
-    return dispatch("updateRunningIndex", state.runningIndex + 1).then(
-      index => {
-        dispatch("updateVocab", index);
-      }
+    return dispatch("updateRunningIndex", state.runningIndex + 1).then(index =>
+      dispatch("updateVocab", index)
     );
   },
-  async updateVocab({ commit, state }, index) {
-    const vocabId = state.vocabIds[index];
-    await fetch(`/api/vocab/${vocabId}`)
+  async updateVocab({ commit, state }) {
+    const vocabId = state.vocabIds[state.runningIndex];
+    return await fetch(`./api/vocab/${vocabId}`)
       .then(res => res.json())
       .then(json => {
         commit("updateVocab", json);
@@ -47,8 +45,8 @@ export default {
   },
   resetQuiz({ dispatch, commit }) {
     return dispatch("updateRunningIndex", 0)
-      .then(() => dispatch("shuffleVocabIds"))
-      .then(() => dispatch("updateVocab", 0))
-      .then(() => commit("resetResponses"));
+      .then(() => commit("resetResponses"))
+      .then(() => dispatch("updateVocab"))
+      .then(() => dispatch("shuffleVocabIds"));
   }
 };

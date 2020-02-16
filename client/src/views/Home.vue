@@ -6,10 +6,8 @@
           <h1 class="title is-size-3">S.K.H. Li Ping Secondary School</h1>
           <hr />
           <h1 class="subtitle is-size-3">Online Vocabulary Tests</h1>
-          <form>
-            <NameSelector />
-            <QuizSelector />
-          </form>
+          <NameSelector />
+          <QuizSelector />
         </div>
       </div>
     </div>

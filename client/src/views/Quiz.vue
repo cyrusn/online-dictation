@@ -3,42 +3,29 @@
     <Modal></Modal>
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-half">
-          <AnswerBox />
-        </div>
+        <AnswerCard class="column is-half" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import AnswerBox from "@/components/AnswerBox";
+import AnswerCard from "@/components/AnswerCard";
 import Modal from "@/components/Modal";
+import { mapState } from "vuex";
+
 export default {
-  components: {
-    AnswerBox,
-    Modal
-  },
   mounted() {
-    const { selectedQuiz, $router, updateVocab, runningIndex } = this;
-    if (!selectedQuiz) {
-      $router.push("/");
+    if (!this.selectedQuiz) {
+      this.$router.push("/");
     }
-    updateVocab(runningIndex);
   },
   computed: {
-    ...mapState([
-      "student",
-      "selectedQuiz",
-      "vocabIds",
-      "vocab",
-      "runningIndex",
-      "responses"
-    ])
+    ...mapState(["selectedQuiz"])
   },
-  methods: {
-    ...mapActions(["updateVocab"])
+  components: {
+    AnswerCard,
+    Modal
   }
 };
 </script>

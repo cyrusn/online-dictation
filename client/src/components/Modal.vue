@@ -35,7 +35,10 @@ export default {
   },
   mounted() {
     const { $eventHub, openModal } = this;
-    $eventHub.$on("modal:open", openModal);
+    $eventHub.$on("open:modal", openModal);
+  },
+  destroyed() {
+    this.$eventHub.$off("open:modal");
   },
   methods: {
     ...mapActions(["resetQuiz"]),
@@ -45,6 +48,7 @@ export default {
     closeModal() {
       this.isActive = false;
       this.resetQuiz();
+      this.$eventHub.$emit("close:modal");
     }
   }
 };

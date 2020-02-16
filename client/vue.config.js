@@ -7,5 +7,6 @@ module.exports = {
       }
     }
   },
-  publicPath: process.env.NODE_ENV === "production" ? "/edict/" : "/"
+  publicPath: process.env.NODE_ENV === "production" ? "/edict/" : "/",
+  outputDir: "../public"
 };

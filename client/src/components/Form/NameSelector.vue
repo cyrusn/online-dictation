@@ -47,6 +47,8 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { join } from "path";
+
 const clazzes = [
   "1A",
   "1B",
@@ -119,7 +121,7 @@ export default {
       "updateStudentClassCode"
     ]),
     async getStudentList(clasCode) {
-      await fetch(`./data/studentList.json`)
+      await fetch(join("./data/studentList.json"))
         .then(response => response.json())
         .then(json => {
           this.studentNames = json.filter(sts => {

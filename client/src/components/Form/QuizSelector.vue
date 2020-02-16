@@ -71,14 +71,29 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["updateMode"]),
-    ...mapActions(["updateQuizNames", "updateVocabIds", "updateSelectedQuiz"]),
+    ...mapMutations(["updateMode", "runningIndex"]),
+    ...mapActions([
+      "updateQuizNames",
+      "updateVocabIds",
+      "updateSelectedQuiz",
+      "updateVocab"
+    ]),
     onStart() {
-      const { updateVocabIds, $router, validate } = this;
+      const {
+        updateVocabIds,
+        $router,
+        validate,
+        updateVocab,
+        runningIndex
+      } = this;
       if (validate) {
-        updateVocabIds().then(() => {
-          $router.push("quiz");
-        });
+        updateVocabIds()
+          .then(() => {
+            return updateVocab(runningIndex);
+          })
+          .then(() => {
+            $router.push("/quiz");
+          });
       }
     }
   }
