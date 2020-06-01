@@ -1,6 +1,6 @@
 <template>
   <div class="field has-addons">
-    <p class="control">
+    <p class="control has-icons-left">
       <span class="select">
         <select v-model="localMode">
           <option value="">Mode</option>
@@ -9,16 +9,22 @@
           }}</option>
         </select>
       </span>
+      <span class="icon is-left">
+        <font-awesome-icon :icon="['far', 'file-alt']" />
+      </span>
     </p>
-    <div class="control is-expanded">
+    <div class="control is-expanded has-icons-left">
       <div class="select is-fullwidth">
         <select v-model="localSelectedQuiz" @keyup.enter="onStart">
           <option value="">Quiz</option>
-          <option v-for="(name, i) in quizNames" :key="i" :value="name">{{
-            name
+          <option v-for="(quiz, i) in quizNames" :key="i" :value="quiz">{{
+            quiz
           }}</option>
         </select>
       </div>
+      <span class="icon is-left">
+        <font-awesome-icon :icon="['far', 'bookmark']" />
+      </span>
     </div>
     <div class="control">
       <button

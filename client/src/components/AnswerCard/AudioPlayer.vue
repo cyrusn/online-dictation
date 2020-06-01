@@ -1,7 +1,7 @@
 <template>
   <a @click="play">
     <span class="icon">
-      <i class="fas fa-play"></i>
+      <font-awesome-icon :icon="['fas', 'play']" />
     </span>
     Play
   </a>

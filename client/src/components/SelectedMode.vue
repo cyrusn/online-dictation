@@ -1,7 +1,7 @@
 <template>
   <p>
     <span class="icon">
-      <i class="fas fa-file-alt"></i>
+      <font-awesome-icon :icon="['far', 'file-alt']" />
     </span>
     {{ modeText }}
   </p>

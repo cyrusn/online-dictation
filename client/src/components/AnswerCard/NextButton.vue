@@ -1,7 +1,7 @@
 <template>
   <a @click="onClick">
     <span class="icon">
-      <i class="fas fa-share"></i>
+      <font-awesome-icon :icon="['fas', 'share']" />
     </span>
     {{ hasNext ? "Next" : "Submit" }}
   </a>

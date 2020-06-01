@@ -1,7 +1,7 @@
 <template>
   <p>
     <span class="icon">
-      <i class="fas fa-user"></i>
+      <font-awesome-icon :icon="['far', 'id-badge']" />
     </span>
     {{ name }}
   </p>

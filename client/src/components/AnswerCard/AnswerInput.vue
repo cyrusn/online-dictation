@@ -1,7 +1,6 @@
 <template>
   <div>
-    {{ answer }}
-    <p class="control">
+    <p class="control has-icons-left">
       <input
         ref="AnswerInput"
         class="input"
@@ -17,6 +16,9 @@
         :disabled="diabled"
         :class="{ 'is-danger': warning }"
       />
+      <span class="icon is-left">
+        <font-awesome-icon :icon="['fas', 'pen-alt']" />
+      </span>
     </p>
 
     <p class="help is-danger" v-if="warning">

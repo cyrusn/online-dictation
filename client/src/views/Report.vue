@@ -19,7 +19,7 @@
             <footer class="card-footer">
               <p class="card-footer-item">
                 <span class="icon">
-                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  <font-awesome-icon :icon="['far', 'check-square']" />
                 </span>
                 {{ Math.floor(correctRatio * 100) }}%
               </p>
@@ -27,7 +27,7 @@
             <footer class="card-footer">
               <div class="card-footer-item">
                 <span class="icon">
-                  <i class="fas fa-clock" aria-hidden="true"></i>
+                  <font-awesome-icon :icon="['far', 'clock']" />
                 </span>
                 <time :datetime="today.toString()">
                   {{ today.toDateString() }}
@@ -40,19 +40,19 @@
             <footer class="card-footer">
               <a class="card-footer-item" @click="toggleShow">
                 <span class="icon">
-                  <i class="fas fa-clipboard-list"></i>
+                  <font-awesome-icon :icon="['far', 'edit']" />
                 </span>
                 Answers
               </a>
               <a class="card-footer-item" @click="onRetry">
                 <span class="icon">
-                  <i class="fas fa-undo"></i>
+                  <font-awesome-icon :icon="['fas', 'undo']" />
                 </span>
                 Retry
               </a>
               <a class="card-footer-item" @click="onRestart">
                 <span class="icon">
-                  <i class="fas fa-backward"></i>
+                  <font-awesome-icon :icon="['fas', 'backward']" />
                 </span>
                 Restart
               </a>
@@ -66,7 +66,7 @@
                 <div class="card-footer-item">
                   <p class="has-text-danger">
                     <span class="icon">
-                      <i class="fas fa-times" aria-hidden="true"></i>
+                      <font-awesome-icon :icon="['fas', 'times']" />
                     </span>
                     {{ res.answer }}
                   </p>
@@ -74,7 +74,7 @@
                 <div class="card-footer-item">
                   <p class="has-text-">
                     <span class="icon">
-                      <i class="fas fa-check-circle" aria-hidden="true"></i>
+                      <font-awesome-icon :icon="['fas', 'check']" />
                     </span>
                     {{ res.title }}
                   </p>

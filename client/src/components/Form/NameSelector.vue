@@ -2,7 +2,7 @@
   <div class="field is-grouped">
     <div class="control is-expanded">
       <div class="field has-addons">
-        <div class="control">
+        <div class="control has-icons-left">
           <div class="select">
             <select v-model="selectedClazz" v-focus>
               <option value="">Class</option>
@@ -11,8 +11,11 @@
               }}</option>
             </select>
           </div>
+          <span class="icon is-left">
+            <font-awesome-icon :icon="['fas', 'users']" />
+          </span>
         </div>
-        <p class="control">
+        <p class="control has-icons-left">
           <span class="select">
             <select v-model="selected">
               <option value="">No.</option>
@@ -25,11 +28,16 @@
               </option>
             </select>
           </span>
+          <span class="icon is-left">
+            <font-awesome-icon :icon="['fas', 'sort-numeric-down']" />
+          </span>
         </p>
-        <div class="control is-expanded">
+        <div class="control is-expanded has-icons-left">
           <div class="select is-fullwidth">
             <select v-model="selected">
-              <option value="">Name</option>
+              <option value="">
+                Name
+              </option>
               <option
                 v-for="(sts, i) in studentNames"
                 :key="i"
@@ -39,6 +47,9 @@
               </option>
             </select>
           </div>
+          <span class="icon is-left">
+            <font-awesome-icon :icon="['fas', 'user']" />
+          </span>
         </div>
       </div>
     </div>
@@ -106,6 +117,12 @@ export default {
         return this.student.classNumber;
       },
       set(value) {
+        if (!value) {
+          const { classCode } = this.student;
+          this.resetStudent();
+          this.updateStudentClassCode(classCode);
+          return;
+        }
         const { studentNames } = this;
         const selectedStudent = studentNames.find(sts => {
           return sts.classNumber === value;

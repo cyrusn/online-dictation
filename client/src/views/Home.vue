@@ -3,9 +3,8 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-half has-text-centered">
-          <h1 class="title is-size-3">S.K.H. Li Ping Secondary School</h1>
-          <hr />
-          <h1 class="subtitle is-size-3">Online Vocabulary Tests</h1>
+          <p class="title is-2">S.K.H. Li Ping Secondary School</p>
+          <p class="subtitle is-4">Online Vocabulary Tests</p>
           <NameSelector />
           <QuizSelector />
         </div>

@@ -1,7 +1,7 @@
 <template>
   <p>
     <span class="icon">
-      <i class="fas fa-book"></i>
+      <font-awesome-icon :icon="['far', 'bookmark']" />
     </span>
     {{ selectedQuiz }}
   </p>
