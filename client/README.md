@@ -31,5 +31,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Copy to server
 
 ```sh
-scp -r ../public root@calp:~/english/online-vocab-system/
+npm run build && scp -r ../public root@calp:~/english/online-vocab-system/
 ```

@@ -25,7 +25,7 @@ export default {
       if (!_id) {
         return new Audio();
       }
-      const src = `./api/voice/${_id}`;
+      const src = `./data/audio/${_id}.mp3`;
       const audio = new Audio(src);
       audio.autoplay = true;
       return audio;
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     play() {
-      this.audio.play();
+      this.audio.load();
     }
   }
 };
